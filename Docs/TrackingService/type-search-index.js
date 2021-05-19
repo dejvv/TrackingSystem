@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"model","l":"Account"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"dao","l":"Dao"},{"p":"message","l":"Dispatcher"},{"p":"util","l":"Settings"},{"p":"service","l":"TrackingService"},{"p":"service","l":"TrackingServiceAllInOneTest"},{"p":"service","l":"TrackingServiceApi"},{"p":"service","l":"TrackingServiceDao"}]

@@ -1,0 +1,63 @@
+version: "3.8"
+services:
+  loadbalancer:
+    build:
+      context: ./Loadbalancer
+    depends_on: 
+      - service1
+      - service2
+      - service3
+    restart: always
+    ports: 
+      - "8080:8080"
+    container_name: loadbalancer
+  accountsdb:
+    image: postgres:13.0-alpine
+    restart: always
+    command: postgres -c 'max_connections=256'
+    environment: 
+      POSTGRES_PASSWORD: NgR7151Yt2nH
+      POSTGRES_USER: trackinguser
+      POSTGRES_DB: tracking
+    volumes: 
+      - ./Postgres/data:/var/lib/postgresql/data
+      - ./Postgres/setup.sql:/docker-entrypoint-initdb.d/init.sql
+    stdin_open: true
+    tty: true
+    ports:
+      - "5432:5432"
+    container_name: accountsdb
+  service1:
+    build:
+      context: ./TrackingService
+    depends_on: 
+      - accountsdb
+    ports:
+      - "7001:7000"
+    container_name: service1
+  service2:
+    build:
+      context: ./TrackingService
+    depends_on: 
+      - accountsdb
+    ports:
+      - "7002:7000"
+    container_name: service2
+  service3:
+    build:
+      context: ./TrackingService
+    depends_on: 
+      - accountsdb
+    ports:
+      - "7003:7000"
+    container_name: service3
+  pubsub:
+    build:
+      context: ./PubSub
+    ports:
+      - "7070:7070"
+    container_name: pubsub
+  cli1:
+    build:
+      context: ./Cli
+    container_name: cli1
