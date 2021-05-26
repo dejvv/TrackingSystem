@@ -35,3 +35,5 @@ atlassian-ide-plugin.xml
 
 # Maven files
 target/
+
+Postgres/data/

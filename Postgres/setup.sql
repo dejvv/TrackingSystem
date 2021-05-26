@@ -1,8 +1,3 @@
-CREATE DATABASE tracking;
-CREATE USER trackinguser WITH ENCRYPTED PASSWORD 'NgR7151Yt2nH';
-CREATE ROLE trackinguser WITH PASSWORD 'NgR7151Yt2nH' LOGIN;
-GRANT ALL PRIVILEGES ON DATABASE tracking TO trackinguser;
-
 CREATE TABLE IF NOT EXISTS Account(
 	accountId bigint, 
 	accountName varchar(255) not null,
